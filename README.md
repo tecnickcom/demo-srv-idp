@@ -8,7 +8,6 @@ This project contains a demo environment for the MIRACL srv-idp service (SAML Id
 * [Docker](https://www.docker.com/products/overview)
 * [Docker Compose](https://docs.docker.com/compose)
 * [GNU Make](http://www.gnu.org/software/make/)
-* [curl](https://curl.haxx.se/)
 
 
 ## Configuration
