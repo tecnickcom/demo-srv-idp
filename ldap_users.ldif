@@ -1,0 +1,18 @@
+version: 1
+
+dn: ou=users,dc=example,dc=com
+objectclass: organizationalUnit
+objectclass: top
+ou: users
+
+dn: cn=idptest,ou=users,dc=example,dc=com
+cn: idptest
+mail: idptest@example.com
+objectclass: inetOrgPerson
+sn: idptest
+
+dn: cn=ssotest,ou=users,dc=example,dc=com
+cn: ssotest
+mail: ssotest@miracl.com
+objectclass: inetOrgPerson
+sn: ssotest

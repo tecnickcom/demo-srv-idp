@@ -1,0 +1,66 @@
+version: "2"
+
+services:
+
+  consul:
+    image: progrium/consul
+    command: "-server -bootstrap"
+    container_name: demo-srv-idp-consul
+    ports: 
+      - "58500:8500"
+
+  redis:
+    image: redis:alpine
+    container_name: demo-srv-idp-redis
+    ports: 
+      - "56379:6379"
+
+  statsd:
+    image: hopsoft/graphite-statsd
+    container_name: demo-srv-idp-statsd
+    ports: 
+      - "51080:80"
+      - "58125:8125/udp"
+
+  ldap:
+    image: osixia/openldap:1.1.8
+    container_name: demo-srv-idp-ldap
+    environment:
+      - LDAP_ORGANISATION
+      - LDAP_DOMAIN
+      - LDAP_BASE_DN
+      - LDAP_ADMIN_PASSWORD
+      - LDAP_CONFIG_PASSWORD
+    ports: 
+      - "50389:389"
+      - "50636:636"
+
+  phpsaml:
+    build: ./phpsaml
+    container_name: demo-srv-idp-phpsaml
+    ports: 
+      - "52080:80"
+
+  portal:
+    build: ./portal
+    container_name: demo-srv-idp-portal
+    ports: 
+      - "53080:80"
+
+  idp:
+    image: miraclpublic/miracl-srv-idp:latest
+    container_name: demo-srv-idp-idp
+    depends_on:
+      - consul
+      - redis
+      - statsd
+      - ldap
+      - phpsaml
+      - portal
+    environment:
+      - SRV_IDP_REMOTECONFIGPROVIDER
+      - SRV_IDP_REMOTECONFIGENDPOINT
+      - SRV_IDP_REMOTECONFIGPATH
+      - SRV_IDP_REMOTECONFIGSECRETKEYRING
+    ports: 
+      - "8000:8000"

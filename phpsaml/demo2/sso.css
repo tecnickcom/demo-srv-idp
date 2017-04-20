@@ -1,0 +1,130 @@
+@charset "UTF-8";
+/* CSS Document */
+/* Nicola Asuni - MIRACL 2017-03-02 */
+body {
+    margin: 0px;
+    font-family: 'Open Sans', sans-serif;
+}
+.logo {
+    overflow: hidden;
+    white-space: nowrap;
+    text-indent: 100%;
+    background-image: url(img/logo.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    display: block;
+    width: 215px;
+}
+.wrapper {
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom: 1px solid #cfdadc;
+}
+.wrapper a {
+    height: 80px;
+}
+.btn {
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    -webkit-border-radius: 8;
+    -moz-border-radius: 8;
+    border-radius: 8px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 0.7em;
+    padding: 6px 15px 6px 15px;
+    text-decoration: none;
+}
+.btn:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}
+div.code {
+    background-color: black;
+    color: lime;
+    padding: 10px;
+    font-size: 1.1em;
+}
+.message {
+    text-align: center;
+    font-size: 1.5em;
+}
+.error {
+    color: #A52A2A;
+}
+h1 {
+    color: #4d565c;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-size: 3em;
+}
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-size: 2em;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+h3 {
+    margin-left: 20px;
+}
+p {
+    text-align: left;
+}
+.content ul {
+    margin: 0%;
+    padding: 0%;
+    text-align: center;
+    border-collapse: separate;
+    border-spacing: 1em;
+}
+.content ul li {
+    background-color: #fcfdfd;
+    border: 1px solid #cfdadc;
+    margin: 10px;
+    padding: 8px;
+    width: 250px;
+    min-width: 250px;
+    height: 250px;
+    vertical-align: top;
+    min-height: 250px;
+    display: -moz-inline-stack;
+    display: inline-block;
+    float: left;
+}
+.content ul li img {
+    border: 1px solid #EFEFEF;
+    background-color: #ffffff;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.content ul li p {
+    font-size: 0.75em;
+    font-style: italic;
+    color: #333333;
+}
+.content ul li a.spname {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-size: 1.4em;
+    padding-top: 0px;
+    margin-top: 0px;
+    color: rgb(72, 145, 220);
+    text-decoration: none;
+}
+.content ul li a.spname:hover {
+    color: #4d565c;
+}

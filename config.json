@@ -1,0 +1,108 @@
+{
+  "serverAddress": ":8000",
+  "serverPublicAddress": "http://127.0.0.1:8000",
+  "errorPageURL": "http://127.0.0.1:53080/srv-idp-error.php",
+  "errorPageTemplate": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>SSO ERROR</title></head><body><h1>SSO ERROR</h1><h2>{{.Data}}</h2><div><a href=\"{{.URL}}/services\" title=\"SSO Login\">SSO LOGIN</a> <a href=\"{{.URL}}/logout\" title=\"Terminate the main SSO session\">SSO LOGOUT</a></div><div><table><tr><th>FIELD</th><th>VALUE</th></tr><tr><td>Program</td><td>{{.Program}}</td></tr><tr><td>Version</td><td>{{.Version}}</td></tr><tr><td>Release</td><td>{{.Release}}</td></tr><tr><td>IdP URL</td><td>{{.URL}}</td></tr><tr><td>DateTime</td><td>{{.DateTime}}</td></tr><tr><td>Timestamp</td><td>{{.Timestamp}}</td></tr><tr><td>Status</td><td>{{.Status}}</td></tr><tr><td>Code</td><td>{{.Code}}</td></tr><tr><td>Message</td><td>{{.Message}}</td></tr><tr><td>Data</td><td>{{.Data}}</td></tr></table></div></body></html>",
+  "logoutPageURL": "http://127.0.0.1:53080/srv-idp-logout.php",
+  "logoutPageTemplate": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>SSO LOGOUT</title></head><body><h1>SSO LOGOUT</h1><h2>The IDP Session has been successfully deleted</h2><div><a href=\"{{.URL}}/services\" title=\"SSO Login\">SSO LOGIN</a></div><h3>Logout links of visited Service Providers:</h3><ul>{{ range $name, $logout := .SPList }}<li><a href=\"{{ $logout }}\" title=\"Logout from {{ $name }}\" target=\"_blank\">{{ $name }}</a></li>{{ end }}</ul></body></html>",
+  "servicesPageURL": "http://127.0.0.1:53080/srv-idp-services.php",
+  "servicesPageTemplate": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>SSO Authorized Service Providers</title></head><body><h1>SSO Authorized Service Providers</h1><div><a href=\"{{.URL}}/logout\" title=\"Terminate the main SSO session\">SSO LOGOUT</a></div><ul>{{ range $sp := .SPList }}<li><strong>{{ $sp.Name }}</strong><br /><em>{{ $sp.Description }}</em><ul><li><a href=\"{{ $sp.IDPLogin }}\" title=\"IdP-Login: {{ $sp.Description }}\" target=\"_blank\">IdP-initiated login</a></li><li><a href=\"{{ $sp.Login }}\" title=\"Login: {{ $sp.Description }}\" target=\"_blank\">Login Page</a></li><li><a href=\"{{ $sp.Logout }}\" title=\"Logout: {{ $sp.Description }}\" target=\"_blank\">Logout</a></li></ul></li>{{ end }}</ul></body></html>",
+  "log": {
+    "level": "DEBUG",
+    "network": "",
+    "address": ""
+  },
+  "stats": {
+    "prefix": "srv-idp",
+    "network": "udp",
+    "address": "statsd:8125",
+    "flush_period": 100
+  },
+  "redis": {
+    "network": "tcp",
+    "address": "redis:6379",
+    "database": 0,
+    "password": "",
+    "connect_timeout": 0,
+    "read_timeout": 0,
+    "write_timeout": 0,
+    "pool_max_idle": 0,
+    "pool_max_active": 0,
+    "pool_idle_timeout": 0,
+    "max_age": 3600
+  },
+  "zfa": {
+    "client_id": "",
+    "client_secret": "",
+    "backend": "https://api.mpin.io"
+  },
+  "idp": {
+    "private_key": "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDVK4D1BRZIksdrxe67ArMRnfZ8qoiNDBG5DIQGNWdp/JxTW8z36+81+/eJX02VHq4QEb1XsmjRDLhxS8fYEiTSdYkoiIlzEwgdj87ghMsr3Od9hVjqsKlr4f1FmCBA2WWcJpZt4ugpgN7NJ/5axqPWAesvBEF8yqjXqZPc4E1AjqhXhCmfjWxKibK+rzn8pQ9H8VANByh28336RAUPk3AVTTWJ5ja2T5BBvGD5QyMG8+gB1uzgoxIVLOxAEGGB/tn2tJ6IUfFt/vrxRp38XZA38rSUCdwP14bw3QKspW/LzUac5DXXp80CGCZ44gRPbNxRYBUvpRef44rXpp1+V2rdAgMBAAECggEAYoKeL5zQNW2PNuDbeBTBR+zl0arFO9lN/2QnRu87ASG55FPSHugrPZlZRWSDZ9wruEVaaMKL6b+lJMZObi3EUnX6kn62djVfVLn2co8rjPOjDsCm3J4TTUW8U4L/tLhCWq0Ca3mmrDdfvxMyWiTd5bIxSyL+WHsXF8LIEBSf3qq2WF2ihiK5ehHGjmheC3Ocuj7E61Z3dUlSAiyWbdN8OJ0mDEEFeRy8BezGOilKbnJTZkyIAxGmEpC1eDXI1/RbW8IQehc03JcMwltw8kIZyrbFdpTj/BT37Wb9XF6utVf9i2Sxni9tfFDDNXJ3sTt5Xiv2Soxu7bYgA///IqlmAQKBgQDyG06LXyXIO+Wh4VzidUatmoM3NJsfsqBDPLDdA6WxRzquscbvLQvLMku8PDOdNErRhk929HrbryEKbo5ToOUPpcyfW+bkTmQgUt8/rOyc15X0thnZUBx/bxoVY9fT+JaNo8J+xZJiBhiFaaqjPTtmAO8OngIaS1fs13snLTElHQKBgQDhZxlPk0gu2Dp4BTX4fNKSUNfHyFmeD7vluh7+Xvxz5Vb0YUjNOUh1u+/ffn9Y/eGnqWT0MWv6HJ6FJs1186cgR4/3xICy/Cv1mt5sPjSl+eSvY7mE/2N+GIiqAYMl0w5Cmybp2OrV8pjUr+ORqPao5gKYUuTs6e4ttpjQc5kwwQKBgQDBSa/BcWsWm0tPnD6txXdx7iPIFUWrXs64H2IMcXb9O6LMCb6LAOmjhjoUw/NpFHCPKq2SiMj1TrIQRAd5GMEHZxUgPRzvNO6XJ9J4YbRd23gq8J9ecajuzGKEpTuQTazU0+LZlx6xB7DYAm5q+N3NJ/2zK8798xz1R2tY8amEuQKBgHz7QNKZ1PV8mfcA1KtC8zOENhGl6uM00DgSWqsrGgpdSTjaVJbOw3ncyqX/Kze6Foxz5fFtEfUuN0uXd2eGwc2pQI/e2onkP6/AvsIAQAskJASIZE71mUJK8kRp8EFh5M9T3mDeEWCuUsXj/Wg/6v0+BIRXum4PTCz2yYcUAgZBAoGBAO0jOSkFOS15XKXuQzikh69vAvPN972Cd+LKe/aQ+Ah3gypR2b/JPGKQ/nqp2JE34XUsMg70lfjvwJIM1WIqwnhgCrmyIHmEtyXfIjOlEGVGv1jBXyxOZC5/ZG479qcSWrNABi85JgG3TOh82JEjrwoXoO3p2fPXJZ7L9XDwLaU/",
+    "public_certificate": "MIIDiTCCAnGgAwIBAgIJAKIjrX7n50HsMA0GCSqGSIb3DQEBCwUAMFsxCzAJBgNVBAYTAlVLMQ8wDQYDVQQIDAZMb25kb24xDzANBgNVBAcMBkxvbmRvbjEUMBIGA1UECgwLRGV2ZWxvcG1lbnQxFDASBgNVBAMMC2V4YW1wbGUuY29tMB4XDTE3MDQxOTA5NTk0M1oXDTIwMDExNDA5NTk0M1owWzELMAkGA1UEBhMCVUsxDzANBgNVBAgMBkxvbmRvbjEPMA0GA1UEBwwGTG9uZG9uMRQwEgYDVQQKDAtEZXZlbG9wbWVudDEUMBIGA1UEAwwLZXhhbXBsZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDVK4D1BRZIksdrxe67ArMRnfZ8qoiNDBG5DIQGNWdp/JxTW8z36+81+/eJX02VHq4QEb1XsmjRDLhxS8fYEiTSdYkoiIlzEwgdj87ghMsr3Od9hVjqsKlr4f1FmCBA2WWcJpZt4ugpgN7NJ/5axqPWAesvBEF8yqjXqZPc4E1AjqhXhCmfjWxKibK+rzn8pQ9H8VANByh28336RAUPk3AVTTWJ5ja2T5BBvGD5QyMG8+gB1uzgoxIVLOxAEGGB/tn2tJ6IUfFt/vrxRp38XZA38rSUCdwP14bw3QKspW/LzUac5DXXp80CGCZ44gRPbNxRYBUvpRef44rXpp1+V2rdAgMBAAGjUDBOMB0GA1UdDgQWBBT0YahgpJCdAcogqExnUbfYWM/ngDAfBgNVHSMEGDAWgBT0YahgpJCdAcogqExnUbfYWM/ngDAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQB9WzkToW8WCV7KBEX/Eay+1nk3SCPO3zW9bzOgaS0fGK0HtyqILdd45FeLTAUp+ToYvlnVxecx92bN+tD8Fi5Gi91ci6Du616ZLsJZbQVFXQnWp2r5HAUrba8D8M5QM8hF0AWZiuguuStU2mzgMB7uZ9MpkGtW2PdXrCL5CTrGZ0FbLcM2tOJ4TJkNUpy9JRCxPyR0nVCnR8YfN1EW6oTlJW6HoTu2pVCCH9Wx4Jyf4jfNnqiFds+nM+jnQUvAYcEr2N5pTE+uF/idCuiup81agn+7uHAtkMkUXkx8sgl0xy1ulxTIsKkmnB39oOVItDPjq8yV8cwGuqWyMJwrm456",
+    "metadata": "<EntityDescriptor xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\" validUntil=\"{{.ValidUntil}}\" cacheDuration=\"{{.CacheDuration}}\" entityID=\"{{.EntityID}}\"><IDPSSODescriptor xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\" protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\"><KeyDescriptor use=\"signing\"><KeyInfo xmlns=\"http://www.w3.org/2000/09/xmldsig#\"><X509Data><X509Certificate>{{.SigningCertificate}}</X509Certificate></X509Data></KeyInfo></KeyDescriptor><KeyDescriptor use=\"encryption\"><KeyInfo xmlns=\"http://www.w3.org/2000/09/xmldsig#\"><X509Data><X509Certificate>{{.EncryptionCertificate}}</X509Certificate></X509Data></KeyInfo><EncryptionMethod Algorithm=\"http://www.w3.org/2001/04/xmlenc#aes128-cbc\"></EncryptionMethod><EncryptionMethod Algorithm=\"http://www.w3.org/2001/04/xmlenc#aes192-cbc\"></EncryptionMethod><EncryptionMethod Algorithm=\"http://www.w3.org/2001/04/xmlenc#aes256-cbc\"></EncryptionMethod><EncryptionMethod Algorithm=\"http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p\"></EncryptionMethod></KeyDescriptor><NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat><SingleSignOnService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect\" Location=\"{{.SsoRedirectLocation}}\"></SingleSignOnService><SingleSignOnService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST\" Location=\"{{.SsoPostLocation}}\"></SingleSignOnService></IDPSSODescriptor></EntityDescriptor>",
+    "response_form": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\" dir=\"ltr\"><head><title>SSO REDIRECT TO: {{.URL}}</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><meta name=\"language\" content=\"en\" /><meta name=\"description\" content=\"Redirect the user to the Service Provider: {{.URL}}\" /></head><body onload=\"document.getElementById('SAMLResponseForm').submit()\"><form method=\"post\" action=\"{{.URL}}\" id=\"SAMLResponseForm\"><div><input type=\"hidden\" name=\"SAMLResponse\" id=\"SAMLResponse\" value=\"{{.SAMLResponse}}\" /><input type=\"hidden\" name=\"RelayState\" id=\"RelayState\" value=\"{{.RelayState}}\" /><input type=\"submit\" value=\"Continue\" /></div></form></body></html>",
+    "cache_duration": 48,
+    "max_sp_delay": 90
+  },
+  "profile": {
+    "assertion": {
+       "global": "<Assertion xmlns=\"urn:oasis:names:tc:SAML:2.0:assertion\" ID=\"{{.ID}}\" IssueInstant=\"{{.TimeNow}}\" Version=\"2.0\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\" xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\" xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" xmlns:xenc=\"http://www.w3.org/2001/04/xmlenc#\"><Issuer xmlns=\"urn:oasis:names:tc:SAML:2.0:assertion\" Format=\"urn:oasis:names:tc:SAML:2.0:nameid-format:entity\">{{.MetadataEntityID}}</Issuer>{{.SignatureBlock}}<Subject>{{.NameID}}<SubjectConfirmation Method=\"urn:oasis:names:tc:SAML:2.0:cm:bearer\"><SubjectConfirmationData NotOnOrAfter=\"{{.TimeExpire}}\" Address=\"{{.RecipientIP}}\" Recipient=\"{{.Recipient}}\" {{if not (eq .AuthnRequestID \"\")}}InResponseTo=\"{{.AuthnRequestID}}\"{{end}}/></SubjectConfirmation></Subject><Conditions NotBefore=\"{{.TimeNow}}\" NotOnOrAfter=\"{{.TimeExpire}}\"><AudienceRestriction><Audience>{{.SPEntityID}}</Audience></AudienceRestriction></Conditions><AuthnStatement AuthnInstant=\"{{.SessionCreateTime}}\" SessionIndex=\"{{.SessionIndex}}\" SessionNotOnOrAfter=\"{{.TimeExpire}}\"><SubjectLocality Address=\"{{.RemoteAddress}}\" /><AuthnContext><AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</AuthnContextClassRef></AuthnContext></AuthnStatement>{{.AttributeStatement}}</Assertion>"
+    },
+    "nameid": {
+      "global": "<NameID NameQualifier=\"{{.MetadataEntityID}}\" SPNameQualifier=\"{{.SPEntityID}}\" Format=\"urn:oasis:names:tc:SAML:2.0:nameid-format:transient\">{{.ServiceProviderUserID}}</NameID>"
+    },
+    "attribute": {
+      "global": "<AttributeStatement>{{ if not (eq .ServiceProviderUserID \"\")}}<Attribute FriendlyName=\"uid\" Name=\"urn:oid:0.9.2342.19200300.100.1.1\" NameFormat=\"urn:oasis:names:tc:SAML:2.0:attrname-format:uri\"><AttributeValue xmlns:XMLSchema-instance=\"http://www.w3.org/2001/XMLSchema-instance\" XMLSchema-instance:type=\"xs:string\">{{.ServiceProviderUserID}}</AttributeValue></Attribute>{{end}}{{ if not (eq .SessionUserEmail \"\")}}<Attribute FriendlyName=\"mail\" Name=\"urn:oid:0.9.2342.19200300.100.1.3\" NameFormat=\"urn:oasis:names:tc:SAML:2.0:attrname-format:uri\"><AttributeValue xmlns:XMLSchema-instance=\"http://www.w3.org/2001/XMLSchema-instance\" XMLSchema-instance:type=\"xs:string\">{{.SessionUserEmail}}</AttributeValue></Attribute><Attribute FriendlyName=\"eduPersonPrincipalName\" Name=\"urn:oid:1.3.6.1.4.1.5923.1.1.1.6\" NameFormat=\"urn:oasis:names:tc:SAML:2.0:attrname-format:uri\"><AttributeValue xmlns:XMLSchema-instance=\"http://www.w3.org/2001/XMLSchema-instance\" XMLSchema-instance:type=\"xs:string\">{{.SessionUserEmail}}</AttributeValue></Attribute>{{end}}</AttributeStatement>"
+    },
+    "response": {
+      "global": "<Response xmlns=\"urn:oasis:names:tc:SAML:2.0:protocol\" Version=\"2.0\" Destination=\"{{.Destination}}\" {{if not (eq .AuthnRequestID \"\")}}InResponseTo=\"{{.AuthnRequestID}}\"{{end}} IssueInstant=\"{{.TimeNow}}\" ID=\"{{.ID}}\">{{if not (eq .MetadataEntityID \"\")}}<Issuer xmlns=\"urn:oasis:names:tc:SAML:2.0:assertion\" Format=\"urn:oasis:names:tc:SAML:2.0:nameid-format:entity\">{{.MetadataEntityID}}</Issuer>{{end}}{{.SignatureBlock}}<Status xmlns=\"urn:oasis:names:tc:SAML:2.0:protocol\"><StatusCode xmlns=\"urn:oasis:names:tc:SAML:2.0:protocol\" Value=\"{{.StatusCodeTL}}\">{{if not (eq .StatusCodeSL \"\")}}<StatusCode xmlns=\"urn:oasis:names:tc:SAML:2.0:protocol\" Value=\"{{.StatusCodeSL}}\" />{{end}}</StatusCode>{{if not (eq .StatusMessage \"\")}}<StatusMessage xmlns=\"urn:oasis:names:tc:SAML:2.0:protocol\">{{.StatusMessage}}</StatusMessage>{{end}}</Status>{{.Assertion}}</Response>"
+    },
+    "signature": {
+      "global": "<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\"><SignedInfo><CanonicalizationMethod Algorithm=\"http://www.w3.org/2001/10/xml-exc-c14n#\"></CanonicalizationMethod><SignatureMethod Algorithm=\"http://www.w3.org/2001/04/xmldsig-more#rsa-sha256\"></SignatureMethod><Reference URI=\"{{.ReferenceURI}}\"><Transforms><Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"></Transform><Transform Algorithm=\"http://www.w3.org/2001/10/xml-exc-c14n#\"></Transform></Transforms><DigestMethod Algorithm=\"http://www.w3.org/2001/04/xmlenc#sha256\"></DigestMethod><DigestValue></DigestValue></Reference></SignedInfo><SignatureValue></SignatureValue><KeyInfo><X509Data><X509Certificate>{{.Certificate}}</X509Certificate></X509Data></KeyInfo></Signature>"
+    }
+  },
+  "ldap": {
+    "server": {
+      "global": {
+        "method": "plain",
+        "address": "ldap:389",
+        "user": "cn=admin,dc=example,dc=com",
+        "password": "password"
+      }
+    },
+    "query": {
+      "global": {
+        "server": "global",
+        "search": [
+            {"dn": "ou=users,dc=example,dc=com", "filter": "(mail={{.UserID}})"}
+        ]
+      }
+    }
+  },
+  "sp": {
+    "sptest": {
+      "description": "Test Service Provider",
+      "issuer": "http://127.0.0.1:52080/php-saml/demo2",
+      "relay_state": "/",
+      "login_url": "http://127.0.0.1:52080/php-saml/demo2/",
+      "logout_url": "http://127.0.0.1:52080/php-saml/demo2/slo.php",
+      "slo_url": "http://127.0.0.1:52080/php-saml/demo2/slo.php",
+      "metadata": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><md:EntityDescriptor xmlns:md=\"urn:oasis:names:tc:SAML:2.0:metadata\" entityID=\"http://127.0.0.1:52080/php-saml/demo2\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"><md:SPSSODescriptor AuthnRequestsSigned=\"true\" WantAssertionsSigned=\"true\" protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\"><md:KeyDescriptor use=\"signing\"><ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIIDiTCCAnGgAwIBAgIJALzXd7RUdNwcMA0GCSqGSIb3DQEBCwUAMFsxCzAJBgNVBAYTAlVLMQ8wDQYDVQQIDAZMb25kb24xDzANBgNVBAcMBkxvbmRvbjEUMBIGA1UECgwLRGV2ZWxvcG1lbnQxFDASBgNVBAMMC2V4YW1wbGUuY29tMB4XDTE3MDQxOTA5NTk0M1oXDTIwMDExNDA5NTk0M1owWzELMAkGA1UEBhMCVUsxDzANBgNVBAgMBkxvbmRvbjEPMA0GA1UEBwwGTG9uZG9uMRQwEgYDVQQKDAtEZXZlbG9wbWVudDEUMBIGA1UEAwwLZXhhbXBsZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDjkNee4MFsDKnKS3vSBn7xF8RWNLicxhMkW7IZrx8KcTpLg86Tt7trdQxkALgaDc2jXCsQodPtNEZzthq+G9BUF4/R+i5ttzk8KvnUJTYXGpyamtcu6N0x6nEm+R0QIcBloH4FBIhRb6NwlT6GMqdn36aFtOjjx5tPVnJEA5+Ka3slPivq+KoGeXW2kqrtkx8kdfOjUfDg1AOvkakojgyaZ+fjEFioktaUchSd5LDAWnXo+kPOkgVpV3Eky8/OEBfrfzuouSWnOBnTp+HByC2//eoZZudtNmU/DB0QSXrsHdRXfBBQWjqRZ9BdF8TBFjA7yP0WdPe8mV7hbYb+2gVxAgMBAAGjUDBOMB0GA1UdDgQWBBSN3xQREwXZJ/L08wntibfJbXt8EDAfBgNVHSMEGDAWgBSN3xQREwXZJ/L08wntibfJbXt8EDAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQAYOMFbPiUn00uDGzIzsjhR2ZgZeG7FVGUykMP/O+fbzwOo7xuwe4Rk54eXopSuD4fwqGx2Js3Lq/PSyxQ9oyMMGuvoKKT+IcSnwRbxkne0MPAp8JbDklcpCd6totXGzZNEFbwne94PUMRdlFbnEYMN3YjABuSfqyu7clAYCgfMZKA+cF0qSILI1l9fTtUWr8fv2DkgkHEvS/cXI1QDhWBsgNTpM+GltMhLXmpgPSIsGrD40Y221Y1Cy1mVX3x/he3Wc8HodvUhXs15MVi6w5Cm4+jbb5jC0fYlyfruZwiBuVBEPvJQKUhlFOAlAx2S5UF9A31zB/LXeChwjatB+jVf</ds:X509Certificate></ds:X509Data></ds:KeyInfo></md:KeyDescriptor><md:KeyDescriptor use=\"encryption\"><ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIIDiTCCAnGgAwIBAgIJALzXd7RUdNwcMA0GCSqGSIb3DQEBCwUAMFsxCzAJBgNVBAYTAlVLMQ8wDQYDVQQIDAZMb25kb24xDzANBgNVBAcMBkxvbmRvbjEUMBIGA1UECgwLRGV2ZWxvcG1lbnQxFDASBgNVBAMMC2V4YW1wbGUuY29tMB4XDTE3MDQxOTA5NTk0M1oXDTIwMDExNDA5NTk0M1owWzELMAkGA1UEBhMCVUsxDzANBgNVBAgMBkxvbmRvbjEPMA0GA1UEBwwGTG9uZG9uMRQwEgYDVQQKDAtEZXZlbG9wbWVudDEUMBIGA1UEAwwLZXhhbXBsZS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDjkNee4MFsDKnKS3vSBn7xF8RWNLicxhMkW7IZrx8KcTpLg86Tt7trdQxkALgaDc2jXCsQodPtNEZzthq+G9BUF4/R+i5ttzk8KvnUJTYXGpyamtcu6N0x6nEm+R0QIcBloH4FBIhRb6NwlT6GMqdn36aFtOjjx5tPVnJEA5+Ka3slPivq+KoGeXW2kqrtkx8kdfOjUfDg1AOvkakojgyaZ+fjEFioktaUchSd5LDAWnXo+kPOkgVpV3Eky8/OEBfrfzuouSWnOBnTp+HByC2//eoZZudtNmU/DB0QSXrsHdRXfBBQWjqRZ9BdF8TBFjA7yP0WdPe8mV7hbYb+2gVxAgMBAAGjUDBOMB0GA1UdDgQWBBSN3xQREwXZJ/L08wntibfJbXt8EDAfBgNVHSMEGDAWgBSN3xQREwXZJ/L08wntibfJbXt8EDAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQAYOMFbPiUn00uDGzIzsjhR2ZgZeG7FVGUykMP/O+fbzwOo7xuwe4Rk54eXopSuD4fwqGx2Js3Lq/PSyxQ9oyMMGuvoKKT+IcSnwRbxkne0MPAp8JbDklcpCd6totXGzZNEFbwne94PUMRdlFbnEYMN3YjABuSfqyu7clAYCgfMZKA+cF0qSILI1l9fTtUWr8fv2DkgkHEvS/cXI1QDhWBsgNTpM+GltMhLXmpgPSIsGrD40Y221Y1Cy1mVX3x/he3Wc8HodvUhXs15MVi6w5Cm4+jbb5jC0fYlyfruZwiBuVBEPvJQKUhlFOAlAx2S5UF9A31zB/LXeChwjatB+jVf</ds:X509Certificate></ds:X509Data></ds:KeyInfo></md:KeyDescriptor><md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat><md:AssertionConsumerService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST\" Location=\"http://127.0.0.1:52080/php-saml/demo2/acs.html\" index=\"0\" isDefault=\"true\"/><md:AttributeConsumingService index=\"0\" isDefault=\"true\"><md:ServiceName xmlns:xml=\"http://www.w3.org/XML/1998/namespace\" xml:lang=\"en\">SPTest</md:ServiceName></md:AttributeConsumingService></md:SPSSODescriptor></md:EntityDescriptor>",
+      "sign_response": true,
+      "sign_assertion": true,
+      "encrypt_assertion": true,
+      "user_id_transform": [{
+        "search": "^([^@]+)@[^@]+$",
+        "replace": "$1"
+      }],
+      "authorize": [[{"ldap": "global"}]],
+      "profile": {
+        "assertion": "global",
+        "nameid": "global",
+        "attribute": "global",
+        "response": "global",
+        "signature": "global"
+      }
+    }
+  }
+}
