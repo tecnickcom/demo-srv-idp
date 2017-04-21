@@ -15,7 +15,7 @@ This project contains a demo environment for the MIRACL srv-idp service (SAML Id
 Set the ***client_id*** and ***client_secret*** field values in the **zfa** section of the **config.json** file.  
 To obtain these values you can [register to MIRACL Trust® for a 30 day trial](https://trust.miracl.cloud/get-started).  
 The detailed instructions can be found at [https://devdocs.trust.miracl.cloud/register-create-new-app](https://devdocs.trust.miracl.cloud/register-create-new-app).  
-The Redirect URL is **127.0.0.1:8000**.
+The Redirect URL is **127.0.0.1:8000/login**.
 
 Edit the **ldap_users.ldif** file to add an entry with your user email.
 
