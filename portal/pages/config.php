@@ -1,3 +1,4 @@
 <?php
 // srv-idp public URL
-define('SRV_IDP_URL', 'http://127.0.0.1:8000');
+$siu = getenv('SRV_IDP_URL') ?: 'http://127.0.0.1:8000';
+define('SRV_IDP_URL', $siu);

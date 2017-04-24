@@ -46,6 +46,8 @@ services:
     container_name: demo-srv-idp-portal
     ports: 
       - "53080:80"
+    environment:
+      - SRV_IDP_URL
 
   idp:
     image: miraclpublic/miracl-srv-idp:latest
