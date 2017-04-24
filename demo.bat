@@ -1,6 +1,4 @@
 @ECHO OFF
-C:
-CD\
 CLS
 
 :MENU
