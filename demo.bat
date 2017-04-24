@@ -1,8 +1,6 @@
 @ECHO OFF
-CLS
 
 :MENU
-CLS
 
 ECHO =========== demo-srv-idp ============
 ECHO -------------------------------------
@@ -20,8 +18,6 @@ IF /I '%INPUT%'=='1' GOTO Start
 IF /I '%INPUT%'=='2' GOTO Stop
 IF /I '%INPUT%'=='3' GOTO Clean
 IF /I '%INPUT%'=='Q' GOTO Quit
-
-CLS
 
 ECHO =========== INVALID INPUT ===========
 ECHO -------------------------------------
@@ -55,4 +51,3 @@ docker-compose down --rmi all
 GOTO MENU
 
 :Quit
-CLS
