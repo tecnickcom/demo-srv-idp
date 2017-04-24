@@ -7,7 +7,6 @@ This project contains a demo environment for the MIRACL srv-idp service (SAML Id
 
 * [Docker](https://www.docker.com/products/overview)
 * [Docker Compose](https://docs.docker.com/compose)
-* [GNU Make](http://www.gnu.org/software/make/) - or manually execute the commands in the *Makefile*
 
 
 ## Configuration
@@ -17,28 +16,41 @@ To obtain these values you can [register to MIRACL Trust® for a 30 day trial](h
 The detailed instructions can be found at [https://devdocs.trust.miracl.cloud/register-create-new-app](https://devdocs.trust.miracl.cloud/register-create-new-app).  
 The Redirect URL is **127.0.0.1:8000/login**.
 
-Edit the **ldap_users.ldif** file to add an entry with your user email.
+Edit the **ldap_users.ldif** file to add an entry with your user email. For example:
+
+```
+dn: cn=ssotest,ou=users,dc=example,dc=com
+cn: ssotest
+mail: YOUR.EMAIL@YOUR.DOMAIN.COM
+objectclass: inetOrgPerson
+sn: ssotest
+```
 
 ## Usage
 
-Build and run the environment by issuing the command:
+Build and run the environment by issuing the command (requires [GNU Make](http://www.gnu.org/software/make/)):
 ```sh
 make start
 ```
+or run the **demo.bat** file in Windows and select the option **1**.
 
 The Identity Provider service is located at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 You can log in using the [http://127.0.0.1:8000/services](http://127.0.0.1:8000/services) endpoint.
 
+
 To stop the environment you can issue the command:
 ```sh
 make stop
 ```
+or run the **demo.bat** file in Windows and select the option **2**.
+
 
 To delete the containers:
 ```sh
 make clean
 ```
+or run the **demo.bat** file in Windows and select the option **3**.
 
 
 ### Consul
