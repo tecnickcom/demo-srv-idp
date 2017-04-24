@@ -36,22 +36,23 @@ GOTO MENU
 :Start
 
 docker-compose up -d --force-recreate
-sleep 10
+TIMEOUT 10
 docker cp config.json demo-srv-idp-consul:/tmp/config.json
 docker exec demo-srv-idp-consul curl --request PUT --data @/tmp/config.json http://127.0.0.1:8500/v1/kv/config/srv-idp
 docker cp ldap_users.ldif demo-srv-idp-ldap:/tmp/ldap_users.ldif
 docker exec demo-srv-idp-ldap ldapadd -x -H ldap://127.0.0.1:389/ -D "cn=admin,dc=example,dc=com" -w password -f /tmp/ldap_users.ldif
 docker-compose restart idp
+GOTO MENU
 
 :Stop
 
 docker-compose down
+GOTO MENU
 
 :Clean
 
 docker-compose down --rmi all
+GOTO MENU
 
 :Quit
 CLS
-
-EXIT
