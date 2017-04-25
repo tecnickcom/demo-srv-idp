@@ -3,6 +3,7 @@
 
 require __DIR__.'/process.php';
 
+//$splistURL = SRV_IDP_URL.'/splist';
 $splistURL = 'http://idp:8000/splist';
 
 $data = file_get_contents($splistURL);
