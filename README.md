@@ -19,11 +19,11 @@ The Redirect URL is **127.0.0.1:8000/login**.
 Edit the **ldap_users.ldif** file to add an entry with your user email. For example:
 
 ```
-dn: cn=ssotest,ou=users,dc=example,dc=com
-cn: ssotest
-mail: YOUR.EMAIL@YOUR.DOMAIN.COM
+dn: cn=testuser,ou=users,dc=example,dc=com
+cn: testuser
+mail: TEST.USER@YOUR.DOMAIN.COM
 objectclass: inetOrgPerson
-sn: ssotest
+sn: testuser
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ Build and run the environment by issuing the command (requires [GNU Make](http:/
 ```sh
 make start
 ```
-or run the **demo.bat** file in Windows and select the option **1**.
+or run the **demo.bat** file in Windows and select option **1**.
 
 The Identity Provider service is located at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
@@ -43,14 +43,14 @@ To stop the environment you can issue the command:
 ```sh
 make stop
 ```
-or run the **demo.bat** file in Windows and select the option **2**.
+or run the **demo.bat** file in Windows and select option **2**.
 
 
 To delete the containers:
 ```sh
 make clean
 ```
-or run the **demo.bat** file in Windows and select the option **3**.
+or run the **demo.bat** file in Windows and select option **3**.
 
 
 ### Consul
@@ -62,4 +62,4 @@ The srv-idp configuration can be found at [http://127.0.0.1:58500/ui/#/dc1/kv/co
 ### Graphite
 
 The Graphite administration console is at [http://127.0.0.1:51080](http://127.0.0.1:51080).  
-This can be used to create graphs of the srv-idp generated metrics.
+This can be used to create graphs of the srv-idp generated metrics (performance information such as session starts, logins, communications with the authentication server, status spikes etc.)
